@@ -1,122 +1,270 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
 <title>Colour King</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#10131d;color:#fff;font-family:Arial,sans-serif}
-header{padding:20px;text-align:center;background:#191e2c;border-bottom:2px solid #e9bd52}
-header h1{margin:0;color:#ffcf54;font-size:28px}
-header p{color:#aaa;margin:7px 0 0}
-.container{max-width:500px;margin:auto;padding:16px}
-.card{background:#1b2131;border:1px solid #30384c;border-radius:14px;padding:16px;margin-bottom:16px}
-.coins{display:flex;justify-content:space-between;align-items:center}
-.badge{background:#30384c;padding:9px 12px;border-radius:9px}
-.timer{text-align:center;font-size:30px;font-weight:bold;color:#ffcf54;margin:12px}
-.colors{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-button{border:0;color:white;padding:14px 5px;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer}
-.red{background:#ef4444}
-.green{background:#16a34a}
-.violet{background:#8b5cf6}
-button:disabled{opacity:.45}
-input{width:100%;padding:12px;border-radius:8px;border:1px solid #414b62;background:#10131d;color:white;margin:8px 0}
-.primary{background:#e8b943;color:#171717;width:100%}
-.small{font-size:12px;color:#aab1c2;line-height:1.5}
-table{width:100%;border-collapse:collapse;font-size:14px}
-td,th{text-align:center;padding:10px 4px;border-bottom:1px solid #30384c}
-.dot{display:inline-block;width:13px;height:13px;border-radius:50%}
-footer{text-align:center;color:#929bad;padding:16px;font-size:12px}
+body{
+ margin:0;background:#f2f3f8;color:#25283a;
+ font-family:Arial,Helvetica,sans-serif;
+ padding-bottom:85px
+}
+.top{
+ height:64px;background:white;display:flex;align-items:center;
+ justify-content:space-between;padding:0 18px;
+ border-bottom:1px solid #eee
+}
+.logo{font-size:28px;font-weight:900;color:#f05259}
+.logo span{color:#25283a}
+.download{font-size:25px;color:#f05259}
+.wrap{max-width:700px;margin:auto;padding:12px}
+.banner{
+ min-height:155px;border-radius:16px;
+ background:linear-gradient(120deg,#6a2c91,#f15a70,#ffb75e);
+ color:white;padding:22px 16px;position:relative;overflow:hidden;
+ display:flex;align-items:center;justify-content:space-between
+}
+.banner:after{
+ content:"👑";font-size:95px;opacity:.8;
+ position:absolute;right:5px;bottom:5px
+}
+.banner h2{font-size:25px;margin:0 0 10px}
+.banner p{font-size:12px;line-height:1.5;max-width:65%}
+.start{
+ display:inline-block;background:#fff;color:#ef4e56;
+ border-radius:8px;padding:10px 24px;font-weight:bold
+}
+.wallet{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:10px;margin:16px 0
+}
+.balance small{color:#777;font-size:13px}
+.balance strong{display:block;font-size:25px;margin-top:8px}
+.actions{display:flex;gap:8px}
+.action{
+ border:0;border-radius:10px;padding:13px 12px;
+ color:white;font-size:14px;font-weight:bold
+}
+.withdraw{background:#ffac60}
+.deposit{background:#f25263}
+.promos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.promo{
+ border-radius:14px;min-height:88px;padding:15px 10px;
+ color:white;font-size:17px;font-weight:bold;
+ display:flex;align-items:center;gap:8px;
+ box-shadow:0 4px 10px #00000012
+}
+.wheel{background:linear-gradient(120deg,#ffb14f,#f33d72)}
+.vip{background:linear-gradient(120deg,#9c35ff,#e33bd9)}
+.emoji{font-size:39px}
+.tabs{
+ display:flex;gap:9px;overflow-x:auto;margin:24px 0 18px;
+ scrollbar-width:none
+}
+.tab{
+ background:#fff;border:0;border-radius:10px;padding:12px 15px;
+ white-space:nowrap;color:#666;font-size:14px
+}
+.tab.active{color:#e94e60;font-weight:bold}
+.heading{font-size:20px;margin:22px 0 14px}
+.games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.game{
+ min-width:0;border-radius:12px;overflow:hidden;
+ background:white;box-shadow:0 3px 9px #00000012
+}
+.art{
+ min-height:120px;display:flex;align-items:center;
+ justify-content:center;font-size:48px;
+ background:linear-gradient(145deg,#ffb85a,#e94864)
+}
+.game:nth-child(2) .art{background:linear-gradient(145deg,#a632e8,#32206c)}
+.game:nth-child(3) .art{background:linear-gradient(145deg,#ffe36b,#e97825)}
+.game:nth-child(4) .art{background:linear-gradient(145deg,#5ad8b0,#147b86)}
+.game:nth-child(5) .art{background:linear-gradient(145deg,#71baff,#5d52ce)}
+.game:nth-child(6) .art{background:linear-gradient(145deg,#ff8ba7,#96365d)}
+.game h3{font-size:13px;text-align:center;margin:10px 3px}
+.game button{
+ display:block;width:calc(100% - 12px);margin:8px 6px;
+ border:0;border-radius:6px;padding:8px 2px;
+ background:#f35465;color:white;font-weight:bold
+}
+.note{font-size:12px;color:#85899a;line-height:1.6}
+.bottom{
+ position:fixed;bottom:0;left:0;width:100%;height:70px;
+ background:#fff;display:flex;justify-content:space-around;
+ border-top:1px solid #e8e8ed;z-index:5
+}
+.bottom button{
+ flex:1;background:white;border:0;color:#9296a5;font-size:11px
+}
+.bottom button.active{color:#ed5965}
+.bottom b{display:block;font-size:22px;margin-bottom:4px}
+#toast{
+ position:fixed;left:50%;bottom:82px;transform:translateX(-50%);
+ background:#24283a;color:white;padding:12px 18px;
+ border-radius:10px;display:none;z-index:9;
+ width:max-content;max-width:90%;font-size:13px
+}
 </style>
 </head>
+
 <body>
-<header>
-<h1>👑 COLOUR KING</h1>
-<p>FREE COLOUR PREDICTION GAME</p>
+<header class="top">
+ <div class="logo">👑 COLOUR<span> KING</span></div>
+ <div class="download" onclick="notify('यह फ्री डेमो वेबसाइट है।')">⇩</div>
 </header>
 
-<main class="container">
-<div class="card coins">
-<div><div class="small">VIRTUAL COINS</div><h2 id="coins">1000</h2></div>
-<div class="badge">🎮 FREE DEMO</div>
-</div>
+<main class="wrap">
+ <section class="banner">
+  <div>
+   <h2>WELCOME TO<br>COLOUR KING</h2>
+   <p>Play fun games, explore new challenges and enjoy your demo coins!</p>
+   <span class="start" onclick="notify('चलो गेम खेलते हैं!')">PLAY NOW ›</span>
+  </div>
+ </section>
 
-<div class="card">
-<div class="small">CURRENT ROUND</div>
-<h2 id="round">1001</h2>
-<div class="small">NEXT RESULT IN</div>
-<div class="timer" id="timer">30</div>
-<div class="small" style="text-align:center">Choose a colour for fun</div>
-</div>
+ <section class="wallet">
+  <div class="balance">
+   <small>🪙 Virtual Wallet Balance</small>
+   <strong>🪙 <span id="coins">1000</span></strong>
+  </div>
+  <div class="actions">
+   <button class="action withdraw" onclick="notify('Withdraw उपलब्ध नहीं है: यह फ्री डेमो है।')">↑<br>Withdraw</button>
+   <button class="action deposit" onclick="notify('Deposit उपलब्ध नहीं है: यह फ्री डेमो है।')">↓<br>Deposit</button>
+  </div>
+ </section>
 
-<div class="card">
-<h3>🎨 Choose Your Colour</h3>
-<div class="colors">
-<button class="red" onclick="choose('Red')">🔴 Red</button>
-<button class="green" onclick="choose('Green')">🟢 Green</button>
-<button class="violet" onclick="choose('Violet')">🟣 Violet</button>
-</div>
-<p id="message" class="small">Choose any colour. Each round uses virtual coins only.</p>
-</div>
+ <section class="promos">
+  <div class="promo wheel" onclick="notify('Wheel demo जल्द आएगा!')">
+   <span class="emoji">🎡</span><span>Wheel of<br>Fortune</span>
+  </div>
+  <div class="promo vip" onclick="notify('VIP डेमो फीचर')">
+   <span class="emoji">👑</span><span>VIP<br>Privileges</span>
+  </div>
+ </section>
 
-<div class="card">
-<h3>🏆 Latest Result</h3>
-<div id="result">Waiting for first result...</div>
-<p class="small">Results are randomly generated for this demo and are not predictions of real-world outcomes.</p>
-</div>
+ <nav class="tabs" id="tabs">
+  <button class="tab active" onclick="selectTab(this,'Lobby')">🏠 Lobby</button>
+  <button class="tab" onclick="selectTab(this,'Mini Games')">🎮 Mini Games</button>
+  <button class="tab" onclick="selectTab(this,'Slots')">🎰 Slots</button>
+  <button class="tab" onclick="selectTab(this,'Card Games')">🃏 Card Games</button>
+ </nav>
 
-<div class="card">
-<h3>📊 Game History</h3>
-<table>
-<thead><tr><th>Round</th><th>Result</th><th>Your Pick</th></tr></thead>
-<tbody id="history"><tr><td colspan="3">No rounds played yet</td></tr></tbody>
-</table>
-</div>
+ <h2 class="heading">⭐ Recommended Games</h2>
 
-<div class="card">
-<h3>ℹ️ About this demo</h3>
-<p class="small">Colour King is a free entertainment demo. Coins have no cash value. There are no deposits, withdrawals or real-money bets.</p>
-</div>
+ <section class="games">
+  <article class="game">
+   <div class="art">🐔</div>
+   <h3>Lucky Chicken</h3>
+   <button onclick="openGame('Lucky Chicken')">PLAY</button>
+  </article>
+  <article class="game">
+   <div class="art">🌀</div>
+   <h3>Colour Wheel</h3>
+   <button onclick="openGame('Colour Wheel')">PLAY</button>
+  </article>
+  <article class="game">
+   <div class="art">🐉</div>
+   <h3>Dragon Treasure</h3>
+   <button onclick="openGame('Dragon Treasure')">PLAY</button>
+  </article>
+  <article class="game">
+   <div class="art">💎</div>
+   <h3>Gem Match</h3>
+   <button onclick="openGame('Gem Match')">PLAY</button>
+  </article>
+  <article class="game">
+   <div class="art">🎯</div>
+   <h3>Lucky Target</h3>
+   <button onclick="openGame('Lucky Target')">PLAY</button>
+  </article>
+  <article class="game">
+   <div class="art">🎁</div>
+   <h3>Gift Box</h3>
+   <button onclick="openGame('Gift Box')">PLAY</button>
+  </article>
+ </section>
+
+ <h2 class="heading">🎨 Colour Prediction Demo</h2>
+ <section style="background:white;padding:16px;border-radius:14px">
+  <p class="note">Round: <strong id="round">1001</strong></p>
+  <p style="text-align:center;font-size:30px;font-weight:bold" id="timer">30</p>
+  <div class="promos">
+   <button class="action" style="background:#ef4444" onclick="pick('Red')">🔴 RED</button>
+   <button class="action" style="background:#16a34a" onclick="pick('Green')">🟢 GREEN</button>
+  </div>
+  <button class="action" style="width:100%;margin-top:10px;background:#8b5cf6" onclick="pick('Violet')">🟣 VIOLET</button>
+  <p id="pickmsg" class="note">एक रंग चुनें। हर राउंड में 10 वर्चुअल कॉइन्स लगते हैं।</p>
+  <hr style="border:0;border-top:1px solid #eee">
+  <p>Latest result: <strong id="result">Waiting...</strong></p>
+  <div id="history" class="note">अभी कोई रिजल्ट नहीं है।</div>
+ </section>
+
+ <p class="note" style="margin-top:18px">
+  Colour King is an independent free demo. Coins have no cash value.
+  No real-money deposits, bets or withdrawals are supported.
+ </p>
 </main>
-<footer>COLOUR KING © 2026 · FREE DEMO</footer>
+
+<nav class="bottom">
+ <button class="active" onclick="bottomNav(this,'Home')"><b>⌂</b>Home</button>
+ <button onclick="bottomNav(this,'Activity')"><b>▣</b>Activity</button>
+ <button onclick="bottomNav(this,'Promotion')"><b>🎁</b>Promotion</button>
+ <button onclick="bottomNav(this,'Account')"><b>♙</b>Account</button>
+</nav>
+<div id="toast"></div>
 
 <script>
-let coins=1000, round=1001, time=30, pick=null, history=[];
-const coinEl=document.getElementById('coins');
-const timerEl=document.getElementById('timer');
-const roundEl=document.getElementById('round');
-const messageEl=document.getElementById('message');
-const colors=['Red','Green','Violet'];
-const dots={Red:'#ef4444',Green:'#16a34a',Violet:'#8b5cf6'};
-
-function choose(color){
- if(pick){messageEl.textContent='You have already chosen this round.';return}
- if(coins<10){messageEl.textContent='Demo coins are finished.';return}
- coins-=10;pick=color;
- coinEl.textContent=coins;
- messageEl.textContent='Your pick: '+color+'. 10 virtual coins used.';
- document.querySelectorAll('.colors button').forEach(b=>b.disabled=true);
+let coins=1000,round=1001,time=30,chosen=null,history=[];
+function notify(msg){
+ const t=document.getElementById('toast');
+ t.textContent=msg;t.style.display='block';
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>t.style.display='none',2400);
 }
-
+function selectTab(btn,name){
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');
+ notify(name+' चुना गया');
+}
+function bottomNav(btn,name){
+ document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');
+ notify(name+' सेक्शन डेमो');
+}
+function openGame(name){
+ notify(name+' गेम डेमो अभी तैयार किया जाना बाकी है।');
+}
+function pick(color){
+ if(chosen){notify('इस राउंड में पहले ही रंग चुन चुके हो।');return}
+ if(coins<10){notify('वर्चुअल कॉइन्स खत्म हो गए।');return}
+ chosen=color;coins-=10;
+ document.getElementById('coins').textContent=coins;
+ document.getElementById('pickmsg').textContent='तुमने '+color+' चुना।';
+ notify(color+' चुना गया');
+}
 function finishRound(){
- const result=colors[Math.floor(Math.random()*colors.length)];
- document.getElementById('result').innerHTML=
- '<span class="dot" style="background:'+dots[result]+'"></span> <b>'+result+'</b>';
- if(pick===result){coins+=25;messageEl.textContent='Correct! You earned 25 virtual coins.'}
- else if(pick){messageEl.textContent='Round finished. Try again next round.'}
- coinEl.textContent=coins;
- history.unshift({round,result,pick:pick||'—'});
- history=history.slice(0,10);
- document.getElementById('history').innerHTML=history.map(h=>
- '<tr><td>'+h.round+'</td><td><span class="dot" style="background:'+dots[h.result]+'"></span> '+h.result+'</td><td>'+h.pick+'</td></tr>'
- ).join('');
- round++;roundEl.textContent=round;pick=null;time=30;
- document.querySelectorAll('.colors button').forEach(b=>b.disabled=false);
+ const colors=['Red','Green','Violet'];
+ const result=colors[Math.floor(Math.random()*3)];
+ document.getElementById('result').textContent=result;
+ if(chosen===result){
+  coins+=25;
+  document.getElementById('pickmsg').textContent='सही रंग! 25 वर्चुअल कॉइन्स मिले।';
+ }else{
+  document.getElementById('pickmsg').textContent=chosen?'इस बार रंग मैच नहीं हुआ।':'अगले राउंड में खेलो!';
+ }
+ document.getElementById('coins').textContent=coins;
+ history.unshift('Round '+round+': '+result+' | Your pick: '+(chosen||'None'));
+ document.getElementById('history').innerHTML=history.slice(0,5).join('<br>');
+ round++;document.getElementById('round').textContent=round;
+ chosen=null;time=30;
 }
-
 setInterval(()=>{
- time--;timerEl.textContent=time;
+ time--;document.getElementById('timer').textContent=time;
  if(time<=0)finishRound();
 },1000);
 </script>
